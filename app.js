@@ -43,12 +43,13 @@ function shuffle(arr) {
 }
 
 function bindImageFallback(img, name) {
-  const fallback = imageFallback(name);
   img.addEventListener("error", () => {
     if (img.dataset.fallbackApplied === "true") return;
+    const nextSrc = imageFallback(name);
+    if (!nextSrc || img.src === nextSrc) return;
     img.dataset.fallbackApplied = "true";
-    img.src = fallback;
-  }, { once: true });
+    img.src = nextSrc;
+  });
 }
 
 function creatorImageMarkup(name, src) {
