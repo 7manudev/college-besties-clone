@@ -42,29 +42,6 @@ body.popup-open {
   background: #fff;
 }
 
-.top-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 16px;
-  font-family: Inter, sans-serif;
-  font-size: 12px;
-  color: var(--text-soft);
-  border-bottom: 1px solid #efefec;
-}
-
-.top-bar a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.top-dot {
-  opacity: 0.45;
-}
-
 .site-header {
   max-width: var(--page-width);
   margin: 0 auto;
@@ -122,11 +99,10 @@ body.popup-open {
   font-family: Inter, sans-serif;
 }
 
-.trusted-icon {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  display: block;
+.trusted-star {
+  color: #00a6ff;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .header-title {
