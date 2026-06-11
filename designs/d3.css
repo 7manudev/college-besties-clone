@@ -1,0 +1,258 @@
+/* D3 — Noir Cinema: dark luxury, hover reveals, tall portraits */
+body.design-d3 {
+  --bg: #090909;
+  --text: #f5f5f5;
+  --text-soft: #a0a0a0;
+  --accent: #d4af37;
+  --accent-hover: #b8962e;
+  --accent-soft: rgba(212, 175, 55, 0.12);
+  --new-badge: #d4af37;
+  --page-width: 1400px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+body.design-d3 .site-shell {
+  background: rgba(9, 9, 9, 0.9);
+  border-bottom: 1px solid #1f1f1f;
+  backdrop-filter: blur(12px);
+}
+
+body.design-d3 .site-title {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+body.design-d3 .version-switcher a {
+  color: #666;
+}
+
+body.design-d3 .hero {
+  padding: 32px 20px 12px;
+  text-align: left;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+body.design-d3 .header-badges {
+  justify-content: flex-start;
+}
+
+body.design-d3 .badge-popular {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: Inter, sans-serif;
+}
+
+body.design-d3 .badge-trusted {
+  font-family: Inter, sans-serif;
+  color: var(--text-soft);
+}
+
+body.design-d3 .header-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+}
+
+body.design-d3 .header-subtitle {
+  color: var(--accent);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-style: italic;
+}
+
+body.design-d3 .bestie-of-day {
+  margin: 0 20px;
+  border: 1px solid #222;
+  border-radius: 0;
+  background: #111;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+body.design-d3 .bestie-label {
+  color: var(--accent);
+}
+
+body.design-d3 .bestie-inner--cinema {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: auto;
+  padding: 0;
+}
+
+body.design-d3 .bestie-img-wrap--cinema {
+  width: 100%;
+  max-width: none;
+  border-radius: 0;
+  aspect-ratio: 16 / 9;
+  max-height: 420px;
+}
+
+body.design-d3 .bestie-img-wrap--cinema img {
+  min-height: 0;
+  height: 100%;
+}
+
+body.design-d3 .bestie-info {
+  padding: 28px 24px 32px;
+  color: #fff;
+}
+
+body.design-d3 .bestie-eyebrow {
+  margin: 0 0 6px;
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+body.design-d3 .bestie-name {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+}
+
+body.design-d3 .bestie-bio {
+  font-family: Inter, sans-serif;
+  color: var(--text-soft);
+}
+
+body.design-d3 .bestie-cta {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 0;
+  font-family: Inter, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+}
+
+body.design-d3 .filter-trigger-inner {
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  box-shadow: none;
+}
+
+body.design-d3 .btn-open-filter {
+  background: #1a1a1a;
+  border-color: #333;
+  color: #fff;
+}
+
+body.design-d3 .filter-hint {
+  color: var(--text-soft);
+}
+
+body.design-d3 .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 24px 20px 0;
+}
+
+body.design-d3 .card {
+  border: 1px solid #1a1a1a;
+  border-radius: 0;
+  background: #111;
+  box-shadow: none;
+  padding: 0;
+}
+
+body.design-d3 .card-media--tall {
+  aspect-ratio: 3 / 4;
+  position: relative;
+}
+
+body.design-d3 .card-overlay--hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.9));
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.design-d3 .card:hover .card-overlay--hover {
+  opacity: 1;
+}
+
+body.design-d3 .card-name {
+  padding: 0;
+  text-align: left;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+body.design-d3 .card-cta-hint {
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+body.design-d3 .new-badge {
+  position: relative;
+  background: var(--accent);
+  color: #090909;
+}
+
+body.design-d3 .active-pill {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+body.design-d3 .bottom-sheet,
+body.design-d3 .age-popup {
+  background: #141414;
+  color: #fff;
+  border-color: #333;
+}
+
+body.design-d3 .chip {
+  background: #1a1a1a;
+  color: #ccc;
+}
+
+body.design-d3 .chip.selected {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (min-width: 768px) {
+  body.design-d3 .bestie-inner--cinema {
+    grid-template-columns: 1.2fr 1fr;
+    min-height: 380px;
+  }
+
+  body.design-d3 .bestie-img-wrap--cinema {
+    aspect-ratio: auto;
+    max-height: none;
+    min-height: 380px;
+  }
+
+  body.design-d3 .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1100px) {
+  body.design-d3 .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  body.design-d3 .card-overlay--hover {
+    opacity: 1;
+    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.85));
+  }
+}

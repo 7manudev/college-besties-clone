@@ -1,0 +1,201 @@
+/* D1 — Editorial Magazine: cinematic hero, portrait grid, luxury feel */
+body.design-d1 {
+  --bg: #f8f5f0;
+  --text: #1a1410;
+  --text-soft: #6b5e54;
+  --accent: #c9a227;
+  --accent-hover: #a8861e;
+  --accent-soft: #f5ecd4;
+  --new-badge: #c9a227;
+  --page-width: 1280px;
+  background: var(--bg);
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+body.design-d1 .site-shell {
+  background: transparent;
+  border: none;
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+}
+
+body.design-d1 .site-header {
+  padding: 20px 24px;
+}
+
+body.design-d1 .site-title {
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.design-d1 .site-logo {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.design-d1 .version-switcher a {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+body.design-d1 .version-switcher a.is-active,
+body.design-d1 .version-switcher a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body.design-d1 .hero {
+  display: none;
+}
+
+body.design-d1 .bestie-of-day {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+
+body.design-d1 .bestie-label {
+  display: none;
+}
+
+body.design-d1 .bestie-inner--editorial {
+  display: block;
+  min-height: clamp(420px, 72vh, 680px);
+}
+
+body.design-d1 .bestie-img-wrap--hero {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(420px, 72vh, 680px);
+  border-radius: 0;
+}
+
+body.design-d1 .bestie-img-wrap--hero img {
+  min-height: clamp(420px, 72vh, 680px);
+  object-position: top center;
+}
+
+body.design-d1 .bestie-hero-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: clamp(28px, 6vw, 64px);
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 8, 6, 0.85) 100%);
+  color: #fff;
+  text-align: left;
+}
+
+body.design-d1 .bestie-eyebrow {
+  margin: 0 0 8px;
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+body.design-d1 .bestie-name {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1.05;
+}
+
+body.design-d1 .bestie-bio {
+  max-width: 520px;
+  font-family: Inter, sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  margin: 12px 0 20px;
+}
+
+body.design-d1 .bestie-cta {
+  background: var(--accent);
+  color: #1a1410;
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 14px 28px;
+}
+
+body.design-d1 .filter-trigger-bar {
+  top: auto;
+  position: relative;
+  padding: 28px 20px 0;
+}
+
+body.design-d1 .filter-trigger-inner {
+  background: #fff;
+  border: 1px solid #e8e0d4;
+  box-shadow: 0 8px 30px rgba(26, 20, 16, 0.06);
+  border-radius: 4px;
+  padding: 8px 16px 8px 8px;
+}
+
+body.design-d1 .btn-open-filter {
+  border-radius: 4px;
+  font-family: Inter, sans-serif;
+}
+
+body.design-d1 .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  padding: 24px clamp(14px, 3vw, 32px) 0;
+}
+
+body.design-d1 .card {
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(26, 20, 16, 0.08);
+  overflow: hidden;
+}
+
+body.design-d1 .card-media--portrait {
+  position: relative;
+  aspect-ratio: 3 / 4;
+}
+
+body.design-d1 .card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+body.design-d1 .card-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 16px;
+  background: linear-gradient(180deg, transparent, rgba(10, 8, 6, 0.75));
+  color: #fff;
+}
+
+body.design-d1 .card-name {
+  padding: 0;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+body.design-d1 .new-badge {
+  position: relative;
+  top: auto;
+  left: auto;
+  display: inline-block;
+  margin-bottom: 6px;
+  background: var(--accent);
+  color: #1a1410;
+}
+
+@media (min-width: 768px) {
+  body.design-d1 .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  body.design-d1 .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

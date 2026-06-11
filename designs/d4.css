@@ -1,0 +1,211 @@
+/* D4 — Bento Mosaic: playful tiles, varied sizes, bright modern */
+body.design-d4 {
+  --bg: #f0f4ff;
+  --text: #1e1b4b;
+  --text-soft: #5b5f8a;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-soft: #e0e7ff;
+  --new-badge: #f472b6;
+  --page-width: 1200px;
+  background: var(--bg);
+  font-family: "DM Sans", Inter, system-ui, sans-serif;
+}
+
+body.design-d4 .site-shell {
+  background: #fff;
+  border: none;
+  box-shadow: 0 1px 0 #e0e7ff;
+}
+
+body.design-d4 .site-title {
+  font-weight: 700;
+}
+
+body.design-d4 .hero {
+  text-align: left;
+  padding: 24px 20px 8px;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+body.design-d4 .header-badges {
+  justify-content: flex-start;
+}
+
+body.design-d4 .header-title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+}
+
+body.design-d4 .header-subtitle {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body.design-d4 .page {
+  padding-bottom: 110px;
+}
+
+body.design-d4 .bestie-of-day {
+  margin: 12px 16px 0;
+  border: none;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.25);
+  grid-column: 1 / -1;
+}
+
+body.design-d4 .bestie-inner--bento {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0;
+  min-height: 220px;
+  padding: 12px;
+}
+
+body.design-d4 .bestie-img-wrap {
+  border-radius: 18px;
+  width: 100%;
+  max-width: none;
+  min-height: 200px;
+}
+
+body.design-d4 .bestie-info {
+  padding: 16px 12px 16px 8px;
+  justify-content: center;
+}
+
+body.design-d4 .bestie-name {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+body.design-d4 .bestie-bio {
+  font-size: 0.88rem;
+  margin: 8px 0 14px;
+}
+
+body.design-d4 .bestie-cta {
+  border-radius: 14px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+body.design-d4 .filter-trigger-bar {
+  position: relative;
+  top: auto;
+  align-items: stretch;
+  padding: 16px 16px 0;
+}
+
+body.design-d4 .filter-trigger-inner {
+  width: 100%;
+  border-radius: 16px;
+  background: #fff;
+  border: 2px solid #e0e7ff;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+}
+
+body.design-d4 .btn-open-filter {
+  border-radius: 12px;
+}
+
+body.design-d4 .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+body.design-d4 .card {
+  border: none;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(30, 27, 75, 0.06);
+  overflow: hidden;
+}
+
+body.design-d4 .card:nth-child(6n + 1) {
+  grid-column: span 2;
+}
+
+body.design-d4 .card:nth-child(6n + 1) .card-media--bento {
+  aspect-ratio: 21 / 9;
+}
+
+body.design-d4 .card-media--bento {
+  aspect-ratio: 4 / 5;
+}
+
+body.design-d4 .card-meta {
+  padding: 12px 14px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+body.design-d4 .card-name {
+  padding: 0;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+body.design-d4 .card-vibe {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+body.design-d4 .new-badge {
+  top: 12px;
+  left: 12px;
+  border-radius: 999px;
+}
+
+@media (min-width: 768px) {
+  body.design-d4 .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    padding: 20px 20px 0;
+  }
+
+  body.design-d4 .card:nth-child(6n + 1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  body.design-d4 .card:nth-child(6n + 1) .card-media--bento {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 280px;
+  }
+
+  body.design-d4 .bestie-inner--bento {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  body.design-d4 .bestie-inner--bento {
+    grid-template-columns: 1fr;
+  }
+
+  body.design-d4 .bestie-img-wrap {
+    min-height: 240px;
+  }
+
+  body.design-d4 .card:nth-child(6n + 1) .card-media--bento {
+    aspect-ratio: 16 / 10;
+  }
+}

@@ -1,0 +1,220 @@
+/* D2 — Social Feed: stories rail, IG-style squares, clean white */
+body.design-d2 {
+  --bg: #ffffff;
+  --text: #111;
+  --text-soft: #666;
+  --accent: #e1306c;
+  --accent-hover: #c91d59;
+  --accent-soft: #ffe8f0;
+  --new-badge: #ff3040;
+  --page-width: 935px;
+  background: var(--bg);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body.design-d2 .site-shell {
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+body.design-d2 .site-title {
+  font-family: "Lobster", cursive;
+  font-weight: 400;
+  font-size: 1.65rem;
+}
+
+body.design-d2 .hero {
+  padding: 16px 16px 4px;
+}
+
+body.design-d2 .header-title,
+body.design-d2 .header-subtitle {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 700;
+}
+
+body.design-d2 .header-subtitle {
+  color: var(--accent);
+}
+
+body.design-d2 .stories-rail {
+  padding: 12px 0 4px;
+  overflow: hidden;
+}
+
+body.design-d2 .stories-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 4px 16px 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+body.design-d2 .stories-track::-webkit-scrollbar {
+  display: none;
+}
+
+body.design-d2 .story-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  width: 72px;
+  scroll-snap-align: start;
+}
+
+body.design-d2 .story-ring {
+  display: block;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+body.design-d2 .story-ring--new {
+  background: linear-gradient(45deg, #ff3040, #e1306c);
+}
+
+body.design-d2 .story-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  display: block;
+}
+
+body.design-d2 .story-label {
+  font-size: 11px;
+  color: var(--text);
+  max-width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.design-d2 .bestie-of-day {
+  margin: 8px 14px 0;
+  border-radius: 16px;
+  border: 1px solid #efefef;
+  background: #fff;
+  box-shadow: none;
+}
+
+body.design-d2 .bestie-label {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+body.design-d2 .bestie-inner--social {
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 160px;
+}
+
+body.design-d2 .bestie-img-wrap {
+  width: 42%;
+  border-radius: 16px 0 0 16px;
+}
+
+body.design-d2 .bestie-info {
+  color: var(--text);
+  padding: 20px;
+}
+
+body.design-d2 .bestie-name {
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+body.design-d2 .bestie-bio {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  margin: 8px 0 14px;
+}
+
+body.design-d2 .bestie-cta {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body.design-d2 .filter-trigger-bar {
+  position: relative;
+  top: auto;
+  padding: 16px 14px 0;
+}
+
+body.design-d2 .filter-trigger-inner {
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 12px;
+  background: #fafafa;
+  border: 1px solid #efefef;
+  box-shadow: none;
+}
+
+body.design-d2 .grid {
+  gap: 3px;
+  padding: 3px;
+  background: #fafafa;
+}
+
+body.design-d2 .card {
+  border: none;
+  border-radius: 4px;
+  box-shadow: none;
+  background: #fff;
+}
+
+body.design-d2 .card-media--square {
+  aspect-ratio: 1 / 1;
+}
+
+body.design-d2 .card-name {
+  padding: 10px 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+body.design-d2 .new-badge {
+  top: 8px;
+  left: 8px;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+@media (min-width: 640px) {
+  body.design-d2 .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding: 16px 14px 0;
+    background: transparent;
+  }
+
+  body.design-d2 .card {
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+@media (min-width: 935px) {
+  body.design-d2 .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

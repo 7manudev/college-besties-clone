@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "python3 -m http.server 8765",
     "start": "python3 -m http.server 8765",
-    "build:versions": "node scripts/build-versions.mjs"
+    "build:versions": "node scripts/build-versions.mjs",
+    "build:designs": "node scripts/build-designs.mjs",
+    "build:all": "node scripts/build-versions.mjs && node scripts/build-designs.mjs"
   }
 }
