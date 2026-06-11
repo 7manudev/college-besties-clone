@@ -239,22 +239,14 @@ function updateContinueState() {
 }
 
 async function handleSubscribe(email) {
-  if (!SITE.formEndpoint) {
-    console.info("Form endpoint not configured — email not saved.");
-    return;
-  }
-
-  const response = await fetch(SITE.formEndpoint, {
+  const response = await fetch("/api/subscribe", {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email,
-      _gotcha: honeypotInput?.value || "",
+      honeypot: honeypotInput?.value || "",
       source: SITE.source,
-      age_confirmed: ageCheckbox.checked,
+      ageConfirmed: ageCheckbox.checked,
     }),
   });
 

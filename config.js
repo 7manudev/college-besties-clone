@@ -7,7 +7,6 @@ export const SITE = {
   filterHint: "Find Your Perfect Girl",
   badges: ["Popular", "Trusted Creators"],
   source: "besties-site",
-  formEndpoint: "https://formspree.io/f/mdavwark",
 };
 
 export const FEATURED = {
