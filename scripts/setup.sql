@@ -1,7 +1,7 @@
 create table if not exists public.email_signups (
   id uuid primary key default gen_random_uuid(),
   email text not null,
-  source text not null default 'besties-site',
+  source text not null default 'yourgirls-site',
   creator_name text,
   profile_url text,
   age_confirmed boolean not null default true,

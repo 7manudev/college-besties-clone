@@ -1,12 +1,12 @@
 import { portraitFor } from "./utils.js";
 
 export const SITE = {
-  name: "Besties",
-  tagline: "Get to know my",
-  subtitle: "besties",
+  name: "YourGirls",
+  tagline: "Discover your",
+  subtitle: "girls",
   filterHint: "Find Your Perfect Girl",
   badges: ["Popular", "Trusted Creators"],
-  source: "besties-site",
+  source: "yourgirls-site",
 };
 
 export const FEATURED = {
