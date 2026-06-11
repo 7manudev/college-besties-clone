@@ -3,6 +3,7 @@ import { cdnImage, imageFallback } from "./utils.js";
 
 const state = { hair: null, vibe: null, new: null, niche: null, sort: null };
 let pendingLink = null;
+let pendingCreatorName = null;
 
 const grid = document.getElementById("friendsGrid");
 const emptyState = document.getElementById("emptyState");
@@ -19,6 +20,7 @@ const emailInput = document.getElementById("newsletterEmail");
 const ageCheckbox = document.getElementById("ageConfirm");
 const continueBtn = document.getElementById("continueBtn");
 const gateError = document.getElementById("gateError");
+const gateIntro = document.getElementById("gateIntro");
 const honeypotInput = document.getElementById("honeypotWebsite");
 
 
@@ -80,7 +82,7 @@ function renderFeatured() {
 
   const featuredImg = wrap.querySelector("img");
   bindImageFallback(featuredImg, FEATURED.name);
-  wrap.querySelector(".bestie-cta").addEventListener("click", () => openGate(FEATURED.profileUrl));
+  wrap.querySelector(".bestie-cta").addEventListener("click", () => openGate(FEATURED.profileUrl, FEATURED.name));
 }
 
 function renderCards() {
@@ -218,10 +220,26 @@ function showGateError(message) {
   gateError.textContent = message;
 }
 
-function openGate(link) {
+function isRedirectUrl(link) {
+  if (!link) return false;
+  try {
+    const url = new URL(link);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function openGate(link, creatorName) {
   pendingLink = link || "#";
+  pendingCreatorName = creatorName || null;
   showGateError("");
   if (honeypotInput) honeypotInput.value = "";
+  if (gateIntro) {
+    gateIntro.textContent = pendingCreatorName
+      ? `Confirm your age and leave your email to continue to ${pendingCreatorName}.`
+      : "Confirm your age and leave your email to unlock the profile.";
+  }
   document.body.classList.add("popup-open");
   newsletterPopup.style.display = "flex";
 }
@@ -230,6 +248,7 @@ function closeGate() {
   document.body.classList.remove("popup-open");
   newsletterPopup.style.display = "none";
   pendingLink = null;
+  pendingCreatorName = null;
   showGateError("");
 }
 
@@ -247,6 +266,8 @@ async function handleSubscribe(email) {
       honeypot: honeypotInput?.value || "",
       source: SITE.source,
       ageConfirmed: ageCheckbox.checked,
+      creatorName: pendingCreatorName,
+      profileUrl: pendingLink,
     }),
   });
 
@@ -331,7 +352,7 @@ function bindEvents() {
   grid.addEventListener("click", (event) => {
     const card = event.target.closest(".card");
     if (!card) return;
-    openGate(card.dataset.profile);
+    openGate(card.dataset.profile, card.dataset.name);
   });
 
   emailInput.addEventListener("input", updateContinueState);
@@ -347,10 +368,11 @@ function bindEvents() {
 
     try {
       await handleSubscribe(email);
-      if (pendingLink && pendingLink !== "#") {
-        window.open(pendingLink, "_blank", "noopener,noreferrer");
-      }
+      const redirectUrl = pendingLink;
       closeGate();
+      if (isRedirectUrl(redirectUrl)) {
+        window.location.href = redirectUrl;
+      }
     } catch (error) {
       showGateError(error.message || "Could not save email. Please try again.");
     } finally {

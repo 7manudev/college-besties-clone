@@ -33,6 +33,8 @@ export default async function handler(req, res) {
   const honeypot = String(body.honeypot || "").trim();
   const email = String(body.email || "").trim().toLowerCase();
   const source = String(body.source || "besties-site").slice(0, 64);
+  const creatorName = String(body.creatorName || "").trim().slice(0, 128) || null;
+  const profileUrl = String(body.profileUrl || "").trim().slice(0, 512) || null;
 
   if (honeypot) {
     return res.status(200).json({ ok: true });
@@ -76,6 +78,8 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email,
         source,
+        creator_name: creatorName,
+        profile_url: profileUrl,
         age_confirmed: true,
         ip_hash: ipHash,
       }),

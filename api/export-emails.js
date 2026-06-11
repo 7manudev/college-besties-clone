@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   }
 
   const response = await fetch(
-    `${url}/rest/v1/email_signups?select=email,source,created_at&order=created_at.desc`,
+    `${url}/rest/v1/email_signups?select=email,source,creator_name,profile_url,created_at&order=created_at.desc`,
     {
       headers: {
         apikey: key,
@@ -33,12 +33,14 @@ export default async function handler(req, res) {
   }
 
   const rows = await response.json();
-  const lines = ["email,source,created_at"];
+  const lines = ["email,source,creator_name,profile_url,created_at"];
   for (const row of rows) {
     const email = `"${String(row.email).replace(/"/g, '""')}"`;
     const source = `"${String(row.source || "").replace(/"/g, '""')}"`;
+    const creatorName = `"${String(row.creator_name || "").replace(/"/g, '""')}"`;
+    const profileUrl = `"${String(row.profile_url || "").replace(/"/g, '""')}"`;
     const created = row.created_at || "";
-    lines.push(`${email},${source},${created}`);
+    lines.push(`${email},${source},${creatorName},${profileUrl},${created}`);
   }
 
   res.setHeader("Content-Type", "text/csv; charset=utf-8");
