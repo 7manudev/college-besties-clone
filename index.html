@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Discover a curated circle of creators, selected to match your vibe." />
+    <title>College Besties Clone</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="bookmark-callout" class="bookmark-callout">
+      <span id="bookmark-copy">Click the star to add to bookmarks</span>
+    </div>
+
+    <div class="top-bar">
+      <span><strong>Come See us:</strong> 123 Main St</span>
+      <span>Find us on <a href="#">Social Media</a></span>
+    </div>
+
+    <header class="site-header">
+      <h1 class="site-title"><a href="./" id="siteName">College Besties</a></h1>
+      <span>Menu</span>
+    </header>
+
+    <section class="hero">
+      <div class="badges">
+        <span class="badge-pill">Popular</span>
+        <span class="badge-pill">Trusted Creators</span>
+      </div>
+      <h2 id="heroTitle">Get to know my college besties</h2>
+      <p class="subtitle" id="heroSubtitle">Find Your Perfect Girl</p>
+    </section>
+
+    <div class="filter-trigger-bar">
+      <div class="filter-trigger-inner">
+        <button type="button" class="btn-open-filter" id="btnOpenFilter">
+          Filter <span class="filter-count" id="filterCount">0</span>
+        </button>
+      </div>
+      <div class="active-pills" id="activePills"></div>
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+
+    <section class="bestie-of-day">
+      <div id="featuredBestie"></div>
+    </section>
+
+    <section class="grid" id="friendsGrid">
+      <div class="empty-state" id="emptyState">
+        <span>😕</span>
+        No creators match your filters
+      </div>
+    </section>
+
+    <div class="view-all-bar" id="viewAllBar">
+      <button type="button" id="viewAllBtn">View All Models ↓</button>
+    </div>
+
+    <div class="sheet-overlay" id="sheetOverlay"></div>
+    <aside class="bottom-sheet" id="bottomSheet" aria-label="Filter creators">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">Filter creators</div>
+        <button type="button" class="sheet-clear" id="sheetClear">Clear all</button>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-label">New Arrivals</div>
+        <div class="chip-row">
+          <button type="button" class="chip" data-group="new" data-value="new">New Only</button>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-label">Niche</div>
+        <div class="chip-row">
+          <button type="button" class="chip" data-group="niche" data-value="egirl">E-Girl</button>
+          <button type="button" class="chip" data-group="niche" data-value="latina">Latina</button>
+          <button type="button" class="chip" data-group="niche" data-value="mixed">Mixed</button>
+          <button type="button" class="chip" data-group="niche" data-value="white">White</button>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-label">Hair Colour</div>
+        <div class="chip-row">
+          <button type="button" class="chip" data-group="hair" data-value="blonde">Blonde</button>
+          <button type="button" class="chip" data-group="hair" data-value="brunette">Brunette</button>
+          <button type="button" class="chip" data-group="hair" data-value="multicolor">Multicolor</button>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-label">Vibe</div>
+        <div class="chip-row">
+          <button type="button" class="chip" data-group="vibe" data-value="girl-next-door">Girl Next Door</button>
+          <button type="button" class="chip" data-group="vibe" data-value="alt">Alt</button>
+          <button type="button" class="chip" data-group="vibe" data-value="sporty">Sporty</button>
+          <button type="button" class="chip" data-group="vibe" data-value="glam">Glam</button>
+          <button type="button" class="chip" data-group="vibe" data-value="preppy">Preppy</button>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-section-label">Sort By</div>
+        <div class="chip-row">
+          <button type="button" class="chip sort-chip" data-group="sort" data-value="az">A→Z</button>
+          <button type="button" class="chip sort-chip" data-group="sort" data-value="za">Z→A</button>
+        </div>
+      </div>
+
+      <button type="button" class="sheet-apply" id="sheetApply">Show creators</button>
+    </aside>
+
+    <div class="age-popup-overlay" id="newsletterPopup">
+      <div class="popup-stack">
+        <div class="age-popup">
+          <button type="button" class="popup-close" id="closePopup" aria-label="Close">×</button>
+          <h2>Before you continue…</h2>
+          <p>Confirm your age and leave your email to unlock the profile.</p>
+          <form class="gate-form" id="newsletterForm">
+            <input type="email" id="newsletterEmail" placeholder="you@email.com" required />
+            <label class="age-confirm">
+              <input type="checkbox" id="ageConfirm" />
+              <span>I confirm that I am 18 years or older.</span>
+            </label>
+            <button type="submit" class="age-btn age-yes" id="continueBtn" disabled>Continue</button>
+          </form>
+        </div>
+        <div class="gate-usps-wrapper">
+          <ul class="gate-usps">
+            <li>✓ Curated creator picks</li>
+            <li>✓ Filter by vibe and niche</li>
+            <li>✓ Bookmark for quick access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

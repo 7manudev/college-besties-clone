@@ -1,0 +1,10 @@
+{
+  "name": "college-besties-clone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Creator directory landing page",
+  "scripts": {
+    "dev": "python3 -m http.server 8765",
+    "start": "python3 -m http.server 8765"
+  }
+}
