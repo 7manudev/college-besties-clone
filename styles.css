@@ -599,6 +599,16 @@ body.popup-open {
   gap: 14px;
 }
 
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .gate-form input[type="email"] {
   width: 100%;
   padding: 14px;
@@ -606,6 +616,23 @@ body.popup-open {
   border-radius: 12px;
   font-family: Inter, sans-serif;
   font-size: 15px;
+}
+
+.turnstile-wrap {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+}
+
+.turnstile-wrap:empty {
+  display: none;
+}
+
+.gate-error {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  color: #d12b2b;
 }
 
 .age-confirm {

@@ -18,6 +18,12 @@ const newsletterPopup = document.getElementById("newsletterPopup");
 const emailInput = document.getElementById("newsletterEmail");
 const ageCheckbox = document.getElementById("ageConfirm");
 const continueBtn = document.getElementById("continueBtn");
+const gateError = document.getElementById("gateError");
+const honeypotInput = document.getElementById("honeypotWebsite");
+
+let turnstileToken = null;
+let turnstileWidgetId = null;
+let turnstileReady = false;
 
 const pillLabels = {
   hair: { blonde: "Blonde", brunette: "Brunette", multicolor: "Multicolor" },
@@ -203,8 +209,62 @@ function applyFilters() {
   updateChipVisibility();
 }
 
+function showGateError(message) {
+  if (!gateError) return;
+  if (!message) {
+    gateError.hidden = true;
+    gateError.textContent = "";
+    return;
+  }
+  gateError.hidden = false;
+  gateError.textContent = message;
+}
+
+function resetTurnstile() {
+  turnstileToken = null;
+  if (window.turnstile && turnstileWidgetId !== null) {
+    window.turnstile.reset(turnstileWidgetId);
+  }
+  updateContinueState();
+}
+
+function initTurnstile() {
+  if (!SITE.turnstileSiteKey) return;
+
+  const script = document.createElement("script");
+  script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  script.async = true;
+  script.defer = true;
+  script.onload = () => {
+    const container = document.getElementById("turnstileContainer");
+    if (!container || !window.turnstile) return;
+    turnstileWidgetId = window.turnstile.render(container, {
+      sitekey: SITE.turnstileSiteKey,
+      theme: "light",
+      callback: (token) => {
+        turnstileToken = token;
+        updateContinueState();
+      },
+      "expired-callback": () => {
+        turnstileToken = null;
+        updateContinueState();
+      },
+      "error-callback": () => {
+        turnstileToken = null;
+        showGateError("Captcha could not load. Please refresh and try again.");
+        updateContinueState();
+      },
+    });
+    turnstileReady = true;
+  };
+  document.head.appendChild(script);
+}
+
 function openGate(link) {
   pendingLink = link || "#";
+  showGateError("");
+  if (honeypotInput) honeypotInput.value = "";
+  resetTurnstile();
   document.body.classList.add("popup-open");
   newsletterPopup.style.display = "flex";
 }
@@ -213,32 +273,32 @@ function closeGate() {
   document.body.classList.remove("popup-open");
   newsletterPopup.style.display = "none";
   pendingLink = null;
+  showGateError("");
 }
 
 function updateContinueState() {
-  continueBtn.disabled = !(ageCheckbox.checked && emailInput.value.trim().length > 3);
+  const hasEmail = emailInput.value.trim().length > 3;
+  const captchaOk = !SITE.turnstileSiteKey || Boolean(turnstileToken);
+  continueBtn.disabled = !(ageCheckbox.checked && hasEmail && captchaOk);
 }
 
 async function handleSubscribe(email) {
-  if (!SITE.emailListId || SITE.emailListId === "YOUR_KLAVIYO_LIST_ID") {
-    console.info("Klaviyo list id not configured — skipping subscribe call.");
-    return;
-  }
-
-  await fetch("https://manage.kmail-lists.com/ajax/subscriptions/subscribe", {
+  const response = await fetch("/api/subscribe", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" },
-    body: new URLSearchParams({
-      g: SITE.emailListId,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
       email,
-      $source: SITE.source,
-      $fields: "source,age_confirmed",
-      $consent: "email",
-      site_source: SITE.source,
+      turnstileToken,
+      honeypot: honeypotInput?.value || "",
       source: SITE.source,
-      age_confirmed: "true",
+      ageConfirmed: ageCheckbox.checked,
     }),
   });
+
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(payload.error || "Could not save email");
+  }
 }
 
 function bindBookmarkCallout() {
@@ -327,16 +387,21 @@ function bindEvents() {
     const email = emailInput.value.trim();
     if (!email || !ageCheckbox.checked) return;
 
+    continueBtn.disabled = true;
+    showGateError("");
+
     try {
       await handleSubscribe(email);
+      if (pendingLink && pendingLink !== "#") {
+        window.open(pendingLink, "_blank", "noopener,noreferrer");
+      }
+      closeGate();
     } catch (error) {
-      console.error("Subscribe failed", error);
+      showGateError(error.message || "Could not save email. Please try again.");
+      resetTurnstile();
+    } finally {
+      updateContinueState();
     }
-
-    if (pendingLink && pendingLink !== "#") {
-      window.open(pendingLink, "_blank", "noopener,noreferrer");
-    }
-    closeGate();
   });
 
   document.getElementById("closePopup").addEventListener("click", closeGate);
@@ -368,6 +433,7 @@ document.getElementById("filterHint").textContent = SITE.filterHint;
 renderFeatured();
 renderCards();
 bindEvents();
+initTurnstile();
 bindBookmarkCallout();
 updateApplyBtn();
 updateChipVisibility();

@@ -6,8 +6,8 @@ export const SITE = {
   subtitle: "besties",
   filterHint: "Find Your Perfect Girl",
   badges: ["Popular", "Trusted Creators"],
-  emailListId: "YOUR_KLAVIYO_LIST_ID",
   source: "besties-site",
+  turnstileSiteKey: "",
 };
 
 export const FEATURED = {
