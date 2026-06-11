@@ -7,7 +7,7 @@ export const SITE = {
   filterHint: "Find Your Perfect Girl",
   badges: ["Popular", "Trusted Creators"],
   source: "besties-site",
-  turnstileSiteKey: "",
+  formEndpoint: "",
 };
 
 export const FEATURED = {

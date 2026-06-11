@@ -139,15 +139,14 @@
           <p>Confirm your age and leave your email to unlock the profile.</p>
           <form class="gate-form" id="newsletterForm">
             <div class="honeypot" aria-hidden="true">
-              <label for="honeypotWebsite">Website</label>
-              <input type="text" id="honeypotWebsite" name="website" tabindex="-1" autocomplete="off" />
+              <label for="honeypotWebsite">Leave blank</label>
+              <input type="text" id="honeypotWebsite" name="_gotcha" tabindex="-1" autocomplete="off" />
             </div>
-            <input type="email" id="newsletterEmail" placeholder="you@email.com" required />
+            <input type="email" id="newsletterEmail" name="email" placeholder="you@email.com" required />
             <label class="age-confirm">
               <input type="checkbox" id="ageConfirm" />
               <span>I confirm that I am 18 years or older.</span>
             </label>
-            <div id="turnstileContainer" class="turnstile-wrap"></div>
             <p class="gate-error" id="gateError" hidden></p>
             <button type="submit" class="age-btn age-yes" id="continueBtn" disabled>Continue</button>
           </form>

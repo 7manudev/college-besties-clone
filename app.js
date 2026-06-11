@@ -21,9 +21,7 @@ const continueBtn = document.getElementById("continueBtn");
 const gateError = document.getElementById("gateError");
 const honeypotInput = document.getElementById("honeypotWebsite");
 
-let turnstileToken = null;
-let turnstileWidgetId = null;
-let turnstileReady = false;
+
 
 const pillLabels = {
   hair: { blonde: "Blonde", brunette: "Brunette", multicolor: "Multicolor" },
@@ -220,51 +218,10 @@ function showGateError(message) {
   gateError.textContent = message;
 }
 
-function resetTurnstile() {
-  turnstileToken = null;
-  if (window.turnstile && turnstileWidgetId !== null) {
-    window.turnstile.reset(turnstileWidgetId);
-  }
-  updateContinueState();
-}
-
-function initTurnstile() {
-  if (!SITE.turnstileSiteKey) return;
-
-  const script = document.createElement("script");
-  script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-  script.async = true;
-  script.defer = true;
-  script.onload = () => {
-    const container = document.getElementById("turnstileContainer");
-    if (!container || !window.turnstile) return;
-    turnstileWidgetId = window.turnstile.render(container, {
-      sitekey: SITE.turnstileSiteKey,
-      theme: "light",
-      callback: (token) => {
-        turnstileToken = token;
-        updateContinueState();
-      },
-      "expired-callback": () => {
-        turnstileToken = null;
-        updateContinueState();
-      },
-      "error-callback": () => {
-        turnstileToken = null;
-        showGateError("Captcha could not load. Please refresh and try again.");
-        updateContinueState();
-      },
-    });
-    turnstileReady = true;
-  };
-  document.head.appendChild(script);
-}
-
 function openGate(link) {
   pendingLink = link || "#";
   showGateError("");
   if (honeypotInput) honeypotInput.value = "";
-  resetTurnstile();
   document.body.classList.add("popup-open");
   newsletterPopup.style.display = "flex";
 }
@@ -278,20 +235,26 @@ function closeGate() {
 
 function updateContinueState() {
   const hasEmail = emailInput.value.trim().length > 3;
-  const captchaOk = !SITE.turnstileSiteKey || Boolean(turnstileToken);
-  continueBtn.disabled = !(ageCheckbox.checked && hasEmail && captchaOk);
+  continueBtn.disabled = !(ageCheckbox.checked && hasEmail);
 }
 
 async function handleSubscribe(email) {
-  const response = await fetch("/api/subscribe", {
+  if (!SITE.formEndpoint) {
+    console.info("Form endpoint not configured — email not saved.");
+    return;
+  }
+
+  const response = await fetch(SITE.formEndpoint, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       email,
-      turnstileToken,
-      honeypot: honeypotInput?.value || "",
+      _gotcha: honeypotInput?.value || "",
       source: SITE.source,
-      ageConfirmed: ageCheckbox.checked,
+      age_confirmed: ageCheckbox.checked,
     }),
   });
 
@@ -398,7 +361,6 @@ function bindEvents() {
       closeGate();
     } catch (error) {
       showGateError(error.message || "Could not save email. Please try again.");
-      resetTurnstile();
     } finally {
       updateContinueState();
     }
@@ -433,7 +395,6 @@ document.getElementById("filterHint").textContent = SITE.filterHint;
 renderFeatured();
 renderCards();
 bindEvents();
-initTurnstile();
 bindBookmarkCallout();
 updateApplyBtn();
 updateChipVisibility();

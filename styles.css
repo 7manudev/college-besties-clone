@@ -618,16 +618,6 @@ body.popup-open {
   font-size: 15px;
 }
 
-.turnstile-wrap {
-  display: flex;
-  justify-content: center;
-  min-height: 0;
-}
-
-.turnstile-wrap:empty {
-  display: none;
-}
-
 .gate-error {
   margin: 0;
   font-family: Inter, sans-serif;
