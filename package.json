@@ -1,6 +1,7 @@
 {
   "name": "college-besties-clone",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "description": "Creator directory landing page",
   "scripts": {

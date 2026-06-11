@@ -1,7 +1,8 @@
 export const SITE = {
   name: "College Besties",
-  tagline: "Get to know my college besties",
-  subtitle: "Find Your Perfect Girl",
+  tagline: "Get to know my",
+  subtitle: "college besties",
+  filterHint: "Find Your Perfect Girl",
   badges: ["Popular", "Trusted Creators"],
   emailListId: "YOUR_KLAVIYO_LIST_ID",
   source: "collegebesties-clone",

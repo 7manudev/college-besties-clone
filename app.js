@@ -1,4 +1,5 @@
 import { SITE, FEATURED, CREATORS } from "./config.js";
+import { cdnImage, imageFallback } from "./utils.js";
 
 const state = { hair: null, vibe: null, new: null, niche: null, sort: null };
 let pendingLink = null;
@@ -41,21 +42,39 @@ function shuffle(arr) {
   return copy;
 }
 
+function bindImageFallback(img, name) {
+  const fallback = imageFallback(name);
+  img.addEventListener("error", () => {
+    if (img.dataset.fallbackApplied === "true") return;
+    img.dataset.fallbackApplied = "true";
+    img.src = fallback;
+  }, { once: true });
+}
+
+function creatorImageMarkup(name, src) {
+  const resolved = cdnImage(src);
+  return `<div class="card-media"><img src="${resolved}" alt="${name}" loading="lazy" decoding="async"></div>`;
+}
+
 function renderFeatured() {
   const wrap = document.getElementById("featuredBestie");
+  const imgSrc = cdnImage(FEATURED.img);
   wrap.innerHTML = `
     <div class="bestie-inner">
       <div class="bestie-img-wrap">
-        <img src="${FEATURED.img}" alt="${FEATURED.name}" loading="lazy">
+        <img src="${imgSrc}" alt="${FEATURED.name}" loading="eager" decoding="async">
         ${FEATURED.isNew ? '<span class="bestie-new-badge">NEW</span>' : ""}
       </div>
       <div class="bestie-info">
         <div class="bestie-name">${FEATURED.name}</div>
         <div class="bestie-bio">${FEATURED.bio}</div>
-        <button class="bestie-cta" data-profile="${FEATURED.profileUrl}">View Profile →</button>
+        <button type="button" class="bestie-cta" data-profile="${FEATURED.profileUrl}">View Profile →</button>
       </div>
     </div>
   `;
+
+  const featuredImg = wrap.querySelector("img");
+  bindImageFallback(featuredImg, FEATURED.name);
   wrap.querySelector(".bestie-cta").addEventListener("click", () => openGate(FEATURED.profileUrl));
 }
 
@@ -72,9 +91,11 @@ function renderCards() {
     card.dataset.profile = creator.profileUrl;
     card.innerHTML = `
       ${creator.isNew ? '<span class="new-badge">NEW</span>' : ""}
-      <img src="${creator.img}" alt="${creator.name}" loading="lazy">
+      ${creatorImageMarkup(creator.name, creator.img)}
       <div class="card-name">${creator.name}</div>
     `;
+
+    bindImageFallback(card.querySelector("img"), creator.name);
     grid.appendChild(card);
   });
 }
@@ -219,6 +240,40 @@ async function handleSubscribe(email) {
   });
 }
 
+function bindBookmarkCallout() {
+  const el = document.getElementById("bookmark-callout");
+  const copy = document.getElementById("bookmark-copy");
+  if (!el || !copy) return;
+
+  const ua = navigator.userAgent.toLowerCase();
+  const isIOS = /iphone|ipad|ipod/.test(ua);
+  const isAndroid = /android/.test(ua);
+  const isChrome = /chrome/.test(ua) && !/edge|edg|opr/.test(ua);
+  const isSafari = /safari/.test(ua) && !isChrome;
+  const isMac = /macintosh/.test(ua);
+
+  el.style.top = el.style.right = el.style.bottom = el.style.left = "auto";
+
+  if (isIOS && isSafari) {
+    el.style.bottom = "4px";
+    el.style.left = "50%";
+    el.style.transform = "translateX(-50%)";
+    copy.textContent = "Add Page To Bookmarks ↓";
+  } else if (isAndroid) {
+    el.style.bottom = "90px";
+    el.style.right = "16px";
+    copy.textContent = 'Tap ⋮ then "Add Bookmark"';
+  } else if (isMac && isSafari) {
+    el.style.top = "14px";
+    el.style.left = "20px";
+    copy.textContent = 'Click Share ↑ then "Add Bookmark"';
+  } else {
+    el.style.top = "14px";
+    el.style.right = "20px";
+    copy.innerHTML = 'Click the <span class="bookmark-star">⭐</span> to add to bookmarks';
+  }
+}
+
 function bindEvents() {
   btnOpen.addEventListener("click", openSheet);
   overlay.addEventListener("click", closeSheet);
@@ -303,14 +358,15 @@ function bindEvents() {
 }
 
 document.getElementById("siteName").textContent = SITE.name;
-document.getElementById("heroTitle").innerHTML = SITE.tagline;
-document.getElementById("heroSubtitle").textContent = SITE.subtitle;
-document.querySelectorAll(".badge-pill").forEach((pill, index) => {
-  pill.textContent = SITE.badges[index] || "";
-});
+document.getElementById("heroTitle").textContent = SITE.tagline;
+document.getElementById("heroSubtitle").firstChild.textContent = `${SITE.subtitle} `;
+document.getElementById("badgePopular").textContent = SITE.badges[0] || "Popular";
+document.getElementById("badgeTrusted").textContent = SITE.badges[1] || "Trusted Creators";
+document.getElementById("filterHint").textContent = SITE.filterHint;
 
 renderFeatured();
 renderCards();
 bindEvents();
+bindBookmarkCallout();
 updateApplyBtn();
 updateChipVisibility();
