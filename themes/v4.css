@@ -1,0 +1,52 @@
+/* V4 — Sunset Pop: vibrant, energetic, bold */
+:root {
+  --bg: #fff8f3;
+  --bg-elevated: #ffffff;
+  --text: #2d1f1a;
+  --text-soft: #6b5348;
+  --text-muted: #c4a89a;
+  --accent: #ff6b35;
+  --accent-hover: #e85a28;
+  --accent-soft: #fff0e8;
+  --new-badge: #ffd23f;
+  --card-shadow: 0 6px 0 rgba(255, 107, 53, 0.12), 0 8px 24px rgba(255, 107, 53, 0.1);
+  --card-shadow-hover: 0 8px 0 rgba(255, 107, 53, 0.15), 0 14px 32px rgba(255, 107, 53, 0.16);
+  --shell-border: #ffe4d4;
+  --card-border-width: 3px;
+  --card-border: #ffe4d4;
+  --card-radius: 22px;
+  --card-media-bg: linear-gradient(135deg, #fff0e8, #fff8f3);
+  --featured-gradient: linear-gradient(135deg, #ffd23f 0%, #ff6b35 40%, #ff2d6f 100%);
+  --featured-shadow: 0 10px 0 rgba(255, 107, 53, 0.15), 0 16px 40px rgba(255, 45, 111, 0.2);
+  --featured-border: 3px solid #fff;
+  --featured-radius: 24px;
+  --filter-inner-bg: rgba(255, 255, 255, 0.9);
+  --filter-inner-border: #ffd23f;
+  --filter-inner-shadow: 0 4px 0 rgba(255, 107, 53, 0.1), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --chip-bg: #fff3eb;
+  --btn-continue: #ff6b35;
+  --trusted-star: #ff6b35;
+  --logo-shadow: 0 3px 0 rgba(255, 107, 53, 0.2), 0 6px 16px rgba(255, 107, 53, 0.2);
+  --view-all-shadow: 0 6px 0 rgba(255, 107, 53, 0.25), 0 10px 28px rgba(255, 107, 53, 0.3);
+}
+
+.header-subtitle {
+  background: linear-gradient(90deg, #ff6b35, #ff2d6f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+}
+
+.bestie-cta {
+  border-radius: 999px;
+}
+
+.btn-open-filter,
+.sheet-apply,
+.view-all-bar button {
+  border-radius: 999px;
+}

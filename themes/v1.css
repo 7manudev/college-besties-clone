@@ -1,0 +1,11 @@
+/* V1 — Classic Magenta (default YourGirls look) */
+:root {
+  --bg: #f2f2ef;
+  --accent: #db18e7;
+  --accent-hover: #c210cc;
+  --accent-soft: #fdf0fe;
+  --new-badge: #d7eb28;
+  --featured-gradient: linear-gradient(135deg, #ff6ef7 0%, #db18e7 50%, #9b10a8 100%);
+  --featured-shadow: 0 8px 32px rgba(219, 24, 231, 0.22);
+  --logo-shadow: 0 2px 10px rgba(219, 24, 231, 0.3);
+}

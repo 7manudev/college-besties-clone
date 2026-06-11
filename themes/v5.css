@@ -1,0 +1,80 @@
+/* V5 — Dark Neon Glass */
+:root {
+  --bg: #08080f;
+  --bg-elevated: rgba(255, 255, 255, 0.06);
+  --text: #f0f0f8;
+  --text-soft: #a8a8c0;
+  --text-muted: #6a6a88;
+  --accent: #ff2d95;
+  --accent-hover: #e01a7d;
+  --accent-soft: rgba(255, 45, 149, 0.15);
+  --new-badge: #00f0ff;
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 12px 40px rgba(255, 45, 149, 0.2);
+  --shell-bg: rgba(12, 12, 22, 0.65);
+  --shell-border: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-border-width: 1px;
+  --card-radius: 20px;
+  --card-media-bg: linear-gradient(135deg, rgba(255, 45, 149, 0.12), rgba(0, 240, 255, 0.08));
+  --featured-gradient: linear-gradient(135deg, rgba(255, 45, 149, 0.5) 0%, rgba(0, 240, 255, 0.25) 100%);
+  --featured-border: 1px solid rgba(255, 255, 255, 0.15);
+  --featured-radius: 22px;
+  --featured-shadow: 0 0 40px rgba(255, 45, 149, 0.25), 0 8px 32px rgba(0, 0, 0, 0.5);
+  --filter-inner-bg: rgba(255, 255, 255, 0.06);
+  --filter-inner-border: rgba(255, 255, 255, 0.12);
+  --filter-inner-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --filter-btn-bg: rgba(255, 255, 255, 0.08);
+  --filter-btn-border: rgba(255, 255, 255, 0.14);
+  --filter-hint-color: #c8c8e0;
+  --chip-bg: rgba(255, 255, 255, 0.06);
+  --chip-color: #c8c8e0;
+  --sheet-bg: rgba(14, 14, 26, 0.88);
+  --sheet-handle: rgba(255, 255, 255, 0.2);
+  --overlay-bg: rgba(0, 0, 0, 0.65);
+  --popup-overlay-bg: rgba(0, 0, 0, 0.75);
+  --popup-bg: rgba(18, 18, 32, 0.92);
+  --popup-text: #b8b8d0;
+  --popup-close-bg: rgba(255, 255, 255, 0.08);
+  --gate-usp-bg: rgba(255, 255, 255, 0.04);
+  --gate-usp-border: rgba(255, 255, 255, 0.1);
+  --input-border: rgba(255, 255, 255, 0.15);
+  --btn-continue: #00f0ff;
+  --btn-continue-disabled-bg: rgba(255, 255, 255, 0.08);
+  --btn-continue-disabled-color: #6a6a88;
+  --trusted-star: #00f0ff;
+  --logo-shadow: 0 0 20px rgba(255, 45, 149, 0.5);
+  --view-all-shadow: 0 0 30px rgba(255, 45, 149, 0.4);
+  --glass-blur: 18px;
+  --body-ambient: radial-gradient(ellipse 80% 50% at 20% 0%, rgba(255, 45, 149, 0.18), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0, 240, 255, 0.12), transparent),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(255, 45, 149, 0.08), transparent);
+}
+
+.header-subtitle {
+  color: var(--accent);
+  text-shadow: 0 0 24px rgba(255, 45, 149, 0.5);
+}
+
+.new-badge,
+.bestie-new-badge {
+  color: #08080f;
+}
+
+.bestie-of-day {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.bestie-cta {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.chip.selected {
+  box-shadow: 0 0 16px rgba(255, 45, 149, 0.25);
+}
+
+.age-popup {
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
+}

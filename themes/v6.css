@@ -1,0 +1,95 @@
+/* V6 — Dark Aurora Glass */
+:root {
+  --bg: #0a0218;
+  --bg-elevated: rgba(255, 255, 255, 0.05);
+  --text: #f5f0ff;
+  --text-soft: #c4b5e0;
+  --text-muted: #7a6a9a;
+  --accent: #c084fc;
+  --accent-hover: #a855f7;
+  --accent-soft: rgba(192, 132, 252, 0.18);
+  --new-badge: #f472b6;
+  --card-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  --card-shadow-hover: 0 16px 48px rgba(168, 85, 247, 0.25);
+  --shell-bg: rgba(20, 8, 40, 0.55);
+  --shell-border: rgba(192, 132, 252, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(192, 132, 252, 0.18);
+  --card-border-width: 1px;
+  --card-radius: 24px;
+  --card-media-bg: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(244, 114, 182, 0.1));
+  --featured-gradient: linear-gradient(135deg, rgba(168, 85, 247, 0.45) 0%, rgba(236, 72, 153, 0.35) 50%, rgba(59, 130, 246, 0.25) 100%);
+  --featured-border: 1px solid rgba(192, 132, 252, 0.25);
+  --featured-radius: 26px;
+  --featured-shadow: 0 0 60px rgba(168, 85, 247, 0.2), 0 12px 40px rgba(0, 0, 0, 0.5);
+  --filter-inner-bg: rgba(255, 255, 255, 0.05);
+  --filter-inner-border: rgba(192, 132, 252, 0.2);
+  --filter-inner-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --filter-btn-bg: rgba(255, 255, 255, 0.06);
+  --filter-btn-border: rgba(192, 132, 252, 0.2);
+  --filter-hint-color: #c4b5e0;
+  --chip-bg: rgba(255, 255, 255, 0.05);
+  --chip-color: #c4b5e0;
+  --sheet-bg: rgba(16, 6, 32, 0.9);
+  --sheet-handle: rgba(192, 132, 252, 0.3);
+  --overlay-bg: rgba(5, 0, 15, 0.7);
+  --popup-overlay-bg: rgba(5, 0, 15, 0.8);
+  --popup-bg: rgba(20, 8, 40, 0.88);
+  --popup-text: #c4b5e0;
+  --popup-close-bg: rgba(192, 132, 252, 0.12);
+  --gate-usp-bg: rgba(192, 132, 252, 0.08);
+  --gate-usp-border: rgba(192, 132, 252, 0.2);
+  --input-border: rgba(192, 132, 252, 0.25);
+  --btn-continue: #a855f7;
+  --btn-continue-disabled-bg: rgba(255, 255, 255, 0.06);
+  --btn-continue-disabled-color: #7a6a9a;
+  --trusted-star: #f472b6;
+  --logo-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+  --view-all-shadow: 0 0 36px rgba(168, 85, 247, 0.35);
+  --glass-blur: 22px;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --body-ambient: radial-gradient(ellipse 70% 55% at 10% 20%, rgba(168, 85, 247, 0.35), transparent),
+    radial-gradient(ellipse 55% 45% at 90% 15%, rgba(236, 72, 153, 0.25), transparent),
+    radial-gradient(ellipse 60% 50% at 50% 90%, rgba(59, 130, 246, 0.2), transparent),
+    radial-gradient(ellipse 40% 30% at 70% 60%, rgba(244, 114, 182, 0.15), transparent);
+}
+
+.header-subtitle {
+  background: linear-gradient(90deg, #c084fc, #f472b6, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.new-badge,
+.bestie-new-badge {
+  color: #0a0218;
+}
+
+.bestie-of-day,
+.card,
+.filter-trigger-inner,
+.bottom-sheet,
+.age-popup,
+.site-shell {
+  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+}
+
+.bestie-cta {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+}
+
+.chip.selected {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.age-popup {
+  box-shadow: 0 0 50px rgba(168, 85, 247, 0.2), 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+.view-all-bar button,
+.sheet-apply {
+  border-radius: 999px;
+}

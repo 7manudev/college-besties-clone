@@ -1,0 +1,48 @@
+/* V2 — Rose Velvet: warm, soft, elegant */
+:root {
+  --bg: #faf5f2;
+  --bg-elevated: #fffdfb;
+  --text: #3d2c2e;
+  --text-soft: #7a6368;
+  --text-muted: #b8a5a9;
+  --accent: #d63384;
+  --accent-hover: #be2f76;
+  --accent-soft: #fce8f1;
+  --new-badge: #f0c75e;
+  --card-shadow: 0 6px 20px rgba(214, 51, 132, 0.08);
+  --card-shadow-hover: 0 12px 28px rgba(214, 51, 132, 0.14);
+  --shell-border: #f0e4e8;
+  --card-media-bg: linear-gradient(135deg, #fff0f6, #faf5f2);
+  --featured-gradient: linear-gradient(135deg, #ffb3d1 0%, #d63384 45%, #9b2c5e 100%);
+  --featured-shadow: 0 10px 36px rgba(214, 51, 132, 0.2);
+  --featured-border: 6px solid #fffdfb;
+  --filter-inner-bg: rgba(255, 253, 251, 0.7);
+  --filter-inner-border: rgba(214, 51, 132, 0.15);
+  --filter-inner-shadow: 0 4px 24px rgba(214, 51, 132, 0.1);
+  --chip-bg: #f8eff3;
+  --btn-continue: #d63384;
+  --trusted-star: #e8a838;
+  --logo-shadow: 0 2px 12px rgba(214, 51, 132, 0.25);
+  --view-all-shadow: 0 8px 24px rgba(214, 51, 132, 0.3);
+  --font-display: "Playfair Display", "Momo Trust Display", Georgia, serif;
+}
+
+.header-subtitle {
+  background: linear-gradient(90deg, #d63384, #e8a838);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bestie-of-day,
+.card {
+  box-shadow: var(--card-shadow);
+}
+
+.card {
+  border-radius: 24px;
+}
+
+.bestie-of-day {
+  border-radius: 28px;
+}

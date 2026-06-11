@@ -1,18 +1,89 @@
-<!DOCTYPE html>
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(__dirname, "..");
+
+const versions = [
+  {
+    slug: "V1",
+    theme: "v1",
+    label: "Classic",
+    title: "YourGirls — Classic Magenta",
+    fonts:
+      "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Momo+Trust+Display&display=swap",
+  },
+  {
+    slug: "V2",
+    theme: "v2",
+    label: "Rose",
+    title: "YourGirls — Rose Velvet",
+    fonts:
+      "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Momo+Trust+Display&family=Playfair+Display:wght@700;800&display=swap",
+  },
+  {
+    slug: "V3",
+    theme: "v3",
+    label: "Mint",
+    title: "YourGirls — Mint Modern",
+    fonts: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap",
+  },
+  {
+    slug: "V4",
+    theme: "v4",
+    label: "Sunset",
+    title: "YourGirls — Sunset Pop",
+    fonts:
+      "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Momo+Trust+Display&display=swap",
+  },
+  {
+    slug: "V5",
+    theme: "v5",
+    label: "Neon",
+    title: "YourGirls — Dark Neon Glass",
+    fonts:
+      "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Momo+Trust+Display&display=swap",
+  },
+  {
+    slug: "V6",
+    theme: "v6",
+    label: "Aurora",
+    title: "YourGirls — Dark Aurora Glass",
+    fonts: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap",
+  },
+];
+
+function versionNav(activeSlug) {
+  const links = versions
+    .map((v) => {
+      const active = v.slug === activeSlug ? ' class="is-active"' : "";
+      return `<a href="/${v.slug}/"${active}>${v.slug}</a>`;
+    })
+    .join("\n          ");
+  return `<nav class="version-switcher" aria-label="Style versions">\n          ${links}\n        </nav>`;
+}
+
+function pageHtml(version, assetPrefix) {
+  const isRoot = assetPrefix === "";
+  const prefix = isRoot ? "." : "..";
+  const nav = versionNav(version.slug);
+
+  return `<!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="YourGirls — discover curated creators, selected to match your vibe." />
-    <title>YourGirls — Classic Magenta</title>
-    <link rel="icon" href="./logo.svg" type="image/svg+xml" />
+    <title>${version.title}</title>
+    <link rel="icon" href="${prefix}/logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Momo+Trust+Display&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles/base.css" />
-    <link rel="stylesheet" href="./themes/v1.css" />
+    <link href="${version.fonts}" rel="stylesheet" />
+    <link rel="stylesheet" href="${prefix}/styles/base.css" />
+    <link rel="stylesheet" href="${prefix}/themes/${version.theme}.css" />
   </head>
-  <body class="theme-v1">
+  <body class="theme-${version.theme}">
     <div id="bookmark-callout" class="bookmark-callout">
       <span id="bookmark-copy">Click the star to add to bookmarks</span>
     </div>
@@ -20,19 +91,12 @@
     <header class="site-shell">
       <div class="site-header">
         <h1 class="site-title">
-          <a href="./" class="site-brand">
-            <img src="./logo.svg" alt="" class="site-logo" width="36" height="36" decoding="async" />
+          <a href="${isRoot ? "./" : `${prefix}/`}" class="site-brand">
+            <img src="${prefix}/logo.svg" alt="" class="site-logo" width="36" height="36" decoding="async" />
             <span id="siteName">YourGirls</span>
           </a>
         </h1>
-        <nav class="version-switcher" aria-label="Style versions">
-          <a href="/V1/" class="is-active">V1</a>
-          <a href="/V2/">V2</a>
-          <a href="/V3/">V3</a>
-          <a href="/V4/">V4</a>
-          <a href="/V5/">V5</a>
-          <a href="/V6/">V6</a>
-        </nav>
+        ${nav}
       </div>
     </header>
 
@@ -173,6 +237,23 @@
       </div>
     </div>
 
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="${prefix}/app.js"></script>
   </body>
 </html>
+`;
+}
+
+for (const version of versions) {
+  const dir = path.join(root, version.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), pageHtml(version, ".."));
+}
+
+fs.writeFileSync(path.join(root, "index.html"), pageHtml(versions[0], ""));
+
+fs.writeFileSync(
+  path.join(root, "styles.css"),
+  `@import url("./styles/base.css");\n@import url("./themes/v1.css");\n`
+);
+
+console.log("Built V1–V6 and updated root index.html");
