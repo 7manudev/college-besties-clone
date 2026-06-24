@@ -1,10 +1,10 @@
 export const SITE = {
-  name: "YourGirls",
+  name: "FindBesties",
   tagline: "Discover your",
-  subtitle: "girls",
-  filterHint: "Find Your Perfect Girl",
+  subtitle: "besties",
+  filterHint: "Find Your Perfect Bestie",
   badges: ["Popular", "Trusted Creators"],
-  source: "yourgirls-site",
+  source: "findbesties-site",
 };
 
 export const FEATURED = {
