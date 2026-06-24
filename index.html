@@ -135,36 +135,7 @@
       <button type="button" class="sheet-apply" id="sheetApply">Show creators</button>
     </aside>
 
-    <div class="age-popup-overlay" id="newsletterPopup">
-      <div class="popup-stack">
-        <div class="age-popup">
-          <button type="button" class="popup-close" id="closePopup" aria-label="Close">×</button>
-          <h2>Before you continue…</h2>
-          <p id="gateIntro">Confirm your age and leave your email to unlock the profile.</p>
-          <form class="gate-form" id="newsletterForm">
-            <div class="honeypot" aria-hidden="true">
-              <label for="honeypotWebsite">Leave blank</label>
-              <input type="text" id="honeypotWebsite" name="_gotcha" tabindex="-1" autocomplete="off" />
-            </div>
-            <input type="email" id="newsletterEmail" name="email" placeholder="you@email.com" required />
-            <label class="age-confirm">
-              <input type="checkbox" id="ageConfirm" />
-              <span>I confirm that I am 18 years or older.</span>
-            </label>
-            <p class="gate-error" id="gateError" hidden></p>
-            <button type="submit" class="age-btn age-yes" id="continueBtn" disabled>Continue</button>
-          </form>
-        </div>
-        <div class="gate-usps-wrapper">
-          <ul class="gate-usps">
-            <li>✓ Curated creator picks</li>
-            <li>✓ Filter by vibe and niche</li>
-            <li>✓ Bookmark for quick access</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <script type="module" src="../app.js"></script>
+<script type="module" src="../app.js"></script>
   </body>
 </html>
